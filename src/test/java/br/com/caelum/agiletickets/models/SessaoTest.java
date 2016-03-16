@@ -1,5 +1,7 @@
 package br.com.caelum.agiletickets.models;
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,6 +38,16 @@ public class SessaoTest {
 
 		sessao.reserva(3);
 		Assert.assertEquals(2, sessao.getIngressosDisponiveis().intValue());
+	}
+	
+	@Test
+	public void deveReservarUltimoIngresso() throws Exception {
+		
+		Sessao sessao = new Sessao();
+		sessao.setTotalIngressos(1);
+		
+		Assert.assertTrue(sessao.podeReservar(1));
+		
 	}
 	
 }
