@@ -12,7 +12,7 @@ public class CalculadoraDePrecos {
 		double qtdPorPrecoTotal =  (sessao.getTotalIngressos() - sessao.getIngressosReservados()) / sessao.getTotalIngressos().doubleValue();
 		
 		if(sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.CINEMA) || sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.SHOW)) {
-			//quando estiver acabando os ingressos...
+
 			preco = calculaPrecoPorQtdIngressoEMultiplicador(sessao, preco, 0.10, 0.05, qtdPorPrecoTotal);
 
 		} else if(sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.BALLET) || sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.ORQUESTRA)) {
@@ -23,7 +23,6 @@ public class CalculadoraDePrecos {
 				preco = calculaPrecoPorDuracao(sessao, preco);
 			}
 		}  else {
-			//nao aplica aumento para teatro (quem vai é pobretão)
 			preco = sessao.getPreco();
 		} 
 
