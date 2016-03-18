@@ -97,4 +97,5 @@ public class EspetaculoTest {
 		assertEquals(3, espetaculo.getSessoes().size());
 	}
 	
+	
 }

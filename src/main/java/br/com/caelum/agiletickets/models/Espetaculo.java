@@ -13,8 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
+import org.joda.time.Weeks;
 
 @Entity
 public class Espetaculo {
@@ -97,8 +99,23 @@ public class Espetaculo {
      * Repare que a data da primeira sessao é sempre a data inicial.
      */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
-		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
-		return null;
+		int qtdSessoes = 0;
+		
+		if(periodicidade == Periodicidade.DIARIA) {
+			qtdSessoes = Days.daysBetween(inicio, fim).getDays();
+		} else {
+			qtdSessoes = Weeks.weeksBetween(inicio, fim).getWeeks();
+		}
+		
+		for (int i = 0; i <= qtdSessoes; i++) {
+			Sessao sessao = new Sessao();
+			
+			sessao.setEspetaculo(this);
+			
+			this.sessoes.add(sessao);
+		}
+		
+		return this.sessoes;
 	}
 	
 	public boolean Vagas(int qtd, int min)
