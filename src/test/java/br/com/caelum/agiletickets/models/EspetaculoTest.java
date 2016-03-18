@@ -2,6 +2,9 @@ package br.com.caelum.agiletickets.models;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.jadira.usertype.dateandtime.joda.PersistentDurationAsMillisLong;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
@@ -97,5 +100,33 @@ public class EspetaculoTest {
 		assertEquals(3, espetaculo.getSessoes().size());
 	}
 	
+	@Test
+	public void verificaDataDeCadaSessaoDoEspetaculo() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		LocalDate inicio = new LocalDate(2011, 1, 9);
+		LocalDate fim = new LocalDate(2011, 1, 23);
+		LocalTime horario = new LocalTime(17, 0);
+		
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		
+		espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
+		
+		List<Sessao> sessoes = espetaculo.getSessoes();
+		
+		inicio.toDateTime(horario);
+		
+		LocalDate inicioMaisSete = inicio.plusDays(7);
+		inicioMaisSete.toDateTime(horario);
+		
+		LocalDate inicioMaisQuatorze = inicioMaisSete.plusDays(7);
+		inicioMaisQuatorze.toDateTime(horario);
+		
+		
+		assertEquals(inicio, sessoes.get(0).getInicio());
+		assertEquals(inicioMaisSete, sessoes.get(1).getInicio());
+		assertEquals(inicioMaisQuatorze, sessoes.get(2).getInicio());
+		
+		
+	}
 	
 }
