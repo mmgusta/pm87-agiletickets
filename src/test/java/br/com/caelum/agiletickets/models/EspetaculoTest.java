@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jadira.usertype.dateandtime.joda.PersistentDurationAsMillisLong;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Test;
@@ -113,16 +114,14 @@ public class EspetaculoTest {
 		
 		List<Sessao> sessoes = espetaculo.getSessoes();
 		
-		inicio.toDateTime(horario);
+		DateTime inicioSessao = inicio.toDateTime(horario);
 		
-		LocalDate inicioMaisSete = inicio.plusDays(7);
-		inicioMaisSete.toDateTime(horario);
+		DateTime inicioMaisSete = inicioSessao.plusDays(7);
 		
-		LocalDate inicioMaisQuatorze = inicioMaisSete.plusDays(7);
-		inicioMaisQuatorze.toDateTime(horario);
+		DateTime inicioMaisQuatorze = inicioMaisSete.plusDays(7);
 		
 		
-		assertEquals(inicio, sessoes.get(0).getInicio());
+		assertEquals(inicioSessao, sessoes.get(0).getInicio());
 		assertEquals(inicioMaisSete, sessoes.get(1).getInicio());
 		assertEquals(inicioMaisQuatorze, sessoes.get(2).getInicio());
 		
