@@ -42,7 +42,7 @@
 		</p>
 		
 		<c:if test="${sessao.ingressosDisponiveis gt 0}">
-			<form action="<c:url value="/sessao/${sessao.id}/reserva"/>" method="post">
+			<form id="reservaForm" action="<c:url value="/sessao/${sessao.id}/reserva"/>" method="post">
 				<h3>Reservar ingresso</h3>
 				<label for="qtde">Quantidade</label>
 				<input id="qtde" name="quantidade"/>
